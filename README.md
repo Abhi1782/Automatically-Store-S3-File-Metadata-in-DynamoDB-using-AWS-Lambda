@@ -1,22 +1,12 @@
 # 🚀 Automatically Store S3 File Metadata in DynamoDB using AWS Lambda
 
-<p align="center">
-  <img src="architecture.png" alt="AWS S3 Lambda DynamoDB Architecture" width="85%" />
-</p>
-
-<p align="center">
-  <b>Serverless | Event‑Driven | AWS Best Practices</b>
-</p>
-
----
-
 ## 📘 Project Summary
 
 This project implements a **serverless, event‑driven AWS architecture** that **automatically captures metadata** of files uploaded to **Amazon S3** and stores it in **Amazon DynamoDB** using **AWS Lambda**.
 
 The solution is **highly scalable, cost‑efficient, and production‑ready**, and closely follows real‑world enterprise design patterns.
 
----
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🎯 Business Use Case
 
@@ -169,7 +159,7 @@ This section provides a **complete, sequential walkthrough** of building the pro
 
 ---
 
-### 🔹 Step 1: Create Amazon S3 Bucket
+### 🪣 Step 1: Create Amazon S3 Bucket
 
 * Create an S3 bucket (example: `s3-file-metadata-bucket`)
 * Region: Same as Lambda and DynamoDB
@@ -180,7 +170,7 @@ This section provides a **complete, sequential walkthrough** of building the pro
 
 ---
 
-### 🔹 Step 2: Create DynamoDB Table
+### 🗄️ Step 2: Create DynamoDB Table
 
 * Table Name: `S3FileMetadata`
 * Partition Key: `ObjectKey` (String)
@@ -191,19 +181,19 @@ This section provides a **complete, sequential walkthrough** of building the pro
 
 ---
 
-### 🔹 Step 3: Create IAM Role for Lambda
+### 🔐 Step 3: Create IAM Role for Lambda
 
 Create an IAM role with the following permissions:
 
 * Read access to S3 objects
-* Write access to the DynamoDB table
+* Write access to DynamoDB table
 * Write access to CloudWatch Logs
 
 **Purpose:** Ensures secure, least‑privilege access between AWS services.
 
 ---
 
-### 🔹 Step 4: Create AWS Lambda Function
+### ⚡ Step 4: Create AWS Lambda Function
 
 * Function Name: `S3MetadataToDynamoDB`
 * Runtime: Python 3.x
@@ -215,7 +205,7 @@ Create an IAM role with the following permissions:
 
 ---
 
-### 🔹 Step 5: Add Lambda Function Code
+### 🧠 Step 5: Add Lambda Function Code
 
 * Paste the provided Python code into the Lambda function
 * Update the DynamoDB table name if required
@@ -225,7 +215,7 @@ Create an IAM role with the following permissions:
 
 ---
 
-### 🔹 Step 6: Configure S3 Event Notification
+### 🔔 Step 6: Configure S3 Event Notification
 
 * Navigate to S3 bucket → Properties → Event notifications
 * Event type: **ObjectCreated (All)**
@@ -237,7 +227,7 @@ Create an IAM role with the following permissions:
 
 ---
 
-### 🔹 Step 7: Upload File to S3 (Testing)
+### 📤 Step 7: Upload File to S3 (Testing)
 
 * Upload any file (PDF, image, text) to the S3 bucket
 * Ensure upload completes successfully
@@ -246,7 +236,7 @@ Create an IAM role with the following permissions:
 
 ---
 
-### 🔹 Step 8: Verify Lambda Execution
+### 📊 Step 8: Verify Lambda Execution
 
 * Open Amazon CloudWatch Logs
 * Locate the Lambda log group
@@ -256,7 +246,7 @@ Create an IAM role with the following permissions:
 
 ---
 
-### 🔹 Step 9: Verify Metadata in DynamoDB
+### ✅ Step 9: Verify Metadata in DynamoDB
 
 * Open DynamoDB table
 * View table items
@@ -266,7 +256,7 @@ Create an IAM role with the following permissions:
 
 ---
 
-### 🔹 Step 10: Monitoring and Validation
+### 📈 Step 10: Monitoring and Validation
 
 * Monitor Lambda invocation metrics
 * Check DynamoDB write capacity usage
