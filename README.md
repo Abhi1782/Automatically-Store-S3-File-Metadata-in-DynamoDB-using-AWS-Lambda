@@ -1,5 +1,3 @@
-# Automatically-Store-S3-File-Metadata-in-DynamoDB-using-AWS-Lambda
-
 # 🚀 Automatically Store S3 File Metadata in DynamoDB using AWS Lambda
 
 <p align="center">
@@ -165,14 +163,116 @@ def lambda_handler(event, context):
 
 ---
 
-## 🛠️ Deployment Steps
+## 🪜 Step‑by‑Step Project Implementation Guide
 
-1️⃣ Create S3 bucket and upload files
-2️⃣ Create DynamoDB table
-3️⃣ Create IAM role for Lambda
-4️⃣ Deploy Lambda function
-5️⃣ Configure S3 event notification
-6️⃣ Verify metadata in DynamoDB
+This section provides a **complete, sequential walkthrough** of building the project from scratch, aligned with the architecture shown.
+
+---
+
+### 🔹 Step 1: Create Amazon S3 Bucket
+
+* Create an S3 bucket (example: `s3-file-metadata-bucket`)
+* Region: Same as Lambda and DynamoDB
+* Enable **Block Public Access** (recommended)
+* (Optional) Enable **Versioning** for future audit requirements
+
+**Purpose:** Acts as the file ingestion layer and event source.
+
+---
+
+### 🔹 Step 2: Create DynamoDB Table
+
+* Table Name: `S3FileMetadata`
+* Partition Key: `ObjectKey` (String)
+* Billing Mode: **On‑Demand (PAY_PER_REQUEST)**
+* Encryption: Enabled by default
+
+**Purpose:** Stores structured metadata for each uploaded object.
+
+---
+
+### 🔹 Step 3: Create IAM Role for Lambda
+
+Create an IAM role with the following permissions:
+
+* Read access to S3 objects
+* Write access to the DynamoDB table
+* Write access to CloudWatch Logs
+
+**Purpose:** Ensures secure, least‑privilege access between AWS services.
+
+---
+
+### 🔹 Step 4: Create AWS Lambda Function
+
+* Function Name: `S3MetadataToDynamoDB`
+* Runtime: Python 3.x
+* Memory: 128 MB
+* Timeout: 30 seconds
+* Execution Role: IAM role created in Step 3
+
+**Purpose:** Processes S3 events and extracts metadata.
+
+---
+
+### 🔹 Step 5: Add Lambda Function Code
+
+* Paste the provided Python code into the Lambda function
+* Update the DynamoDB table name if required
+* Save and deploy the function
+
+**Purpose:** Implements metadata extraction and persistence logic.
+
+---
+
+### 🔹 Step 6: Configure S3 Event Notification
+
+* Navigate to S3 bucket → Properties → Event notifications
+* Event type: **ObjectCreated (All)**
+* Destination: AWS Lambda
+* Select the Lambda function created earlier
+* (Optional) Add suffix filters like `.pdf`, `.jpg`
+
+**Purpose:** Automatically triggers Lambda on file uploads.
+
+---
+
+### 🔹 Step 7: Upload File to S3 (Testing)
+
+* Upload any file (PDF, image, text) to the S3 bucket
+* Ensure upload completes successfully
+
+**Purpose:** Validates end‑to‑end event flow.
+
+---
+
+### 🔹 Step 8: Verify Lambda Execution
+
+* Open Amazon CloudWatch Logs
+* Locate the Lambda log group
+* Confirm successful execution without errors
+
+**Purpose:** Ensures Lambda is triggered and runs correctly.
+
+---
+
+### 🔹 Step 9: Verify Metadata in DynamoDB
+
+* Open DynamoDB table
+* View table items
+* Confirm metadata fields are populated correctly
+
+**Purpose:** Confirms successful metadata persistence.
+
+---
+
+### 🔹 Step 10: Monitoring and Validation
+
+* Monitor Lambda invocation metrics
+* Check DynamoDB write capacity usage
+* Enable CloudWatch alarms if required
+
+**Purpose:** Ensures reliability and operational visibility.
 
 ---
 
@@ -198,29 +298,6 @@ def lambda_handler(event, context):
 ✔ Pay‑per‑use model
 ✔ No idle infrastructure cost
 
----
 
-## 🚀 Future Enhancements
 
-* 🔎 Add Global Secondary Index (GSI)
-* 📣 SNS notifications on upload
-* 🧩 Multi‑bucket support
-* 🏗️ Terraform / CloudFormation
-* 🔐 Advanced security policies
 
----
-
-## 🧾 Resume / Interview One‑Liner
-
-> Implemented a serverless AWS solution using S3 event notifications, Lambda, and DynamoDB to automatically capture and persist file metadata in real time.
-
----
-
-## 👤 Author
-
-**Abhishek Prajapati**
-Cloud & DevOps Engineer
-
----
-
-⭐ If this repository helped you, please **star** it and share.
