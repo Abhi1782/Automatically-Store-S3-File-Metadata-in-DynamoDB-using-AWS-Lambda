@@ -149,7 +149,7 @@ def lambda_handler(event, context):
             )
 
             item = {
-                # 🔴 MUST MATCH DynamoDB PARTITION KEY NAME
+                # MUST MATCH DynamoDB PARTITION KEY NAME
                 "FileName": object_key,
 
                 "BucketName": bucket_name,
@@ -192,6 +192,8 @@ This section provides a **complete, sequential walkthrough** of building the pro
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🗄️ Step 2: Create DynamoDB Table
 
 * Table Name: `S3FileMetadata`
