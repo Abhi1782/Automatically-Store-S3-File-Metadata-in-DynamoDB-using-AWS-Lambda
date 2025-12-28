@@ -23,8 +23,6 @@ This project solves these requirements **without servers**.
 
 ## 🏗️ Architecture Overview
 
------
-
 ![S3 Event-Driven Metadata Management (2)](https://github.com/user-attachments/assets/7c861b04-bb65-4e0c-a079-b88620006e8e)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
